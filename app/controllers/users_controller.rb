@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :set_user, except:[:create,:login]
-    before_action :check_token, except:[:create,:login]
+    before_action :set_user, only:[:change_password]
+    before_action :check_token, only:[:change_password]
 
     def create
         if params[:user][:password] == params[:confirm_password]
@@ -53,7 +53,6 @@ class UsersController < ApplicationController
     end
 
     def check_token
-        debugger
         if request.headers["Authorization"] != "Bearer #{@user.token}"
             render status:400,json:{error: "Token's incorrect"}
             false

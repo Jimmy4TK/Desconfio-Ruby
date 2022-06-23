@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_20_191653) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_21_154740) do
+  create_table "games", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "state", default: 0
+    t.bigint "player1_id"
+    t.bigint "player2_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player1_id"], name: "index_games_on_player1_id"
+    t.index ["player2_id"], name: "index_games_on_player2_id"
+  end
+
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "email"

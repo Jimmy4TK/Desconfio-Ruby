@@ -7,6 +7,9 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     validates :token, uniqueness: true
     
+    #Relations
+    has_many :cards
+
     #Callbacks
     before_create :set_token
 
@@ -14,6 +17,5 @@ class User < ApplicationRecord
     def set_token
         self.token = SecureRandom.uuid
     end
-
     
 end

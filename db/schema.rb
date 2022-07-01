@@ -10,11 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_21_154740) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_23_225256) do
+  create_table "cards", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "number"
+    t.integer "suit"
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_cards_on_game_id"
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
   create_table "games", charset: "utf8mb3", force: :cascade do |t|
     t.integer "state", default: 0
     t.bigint "player1_id"
     t.bigint "player2_id"
+<<<<<<< HEAD
+    t.integer "suit"
+    t.boolean "turn", default: true
+=======
+    t.string "suit"
+    t.boolean "turn"
+>>>>>>> b35c58206d22fd6882ff5598252e70bf2984d7d3
+    t.string "discard_pile", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["player1_id"], name: "index_games_on_player1_id"
